@@ -12,9 +12,15 @@ import heroLottie from "@/assets/lotties/hero.json"
 const Home: React.FC = () => {
   return (
     <main className="overflow-x-hidden bg-zinc-900">
-      <section id="home" className="h-screen w-full">
-        <Header className="absolute" />
-        <div className="flex h-screen w-full justify-center gap-5">
+      <section id="home" className="h-screen w-full border-b border-zync-950">
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 2 }}
+          className="square-grid animate-squareGridMove absolute inset-0"
+        />
+        <Header className="absolute z-10" />
+        <div className="relative flex h-screen w-full justify-center gap-5">
           <div className="h-screen w-full max-w-2xl">
             <div className="flex h-screen w-full flex-col items-center justify-center px-6">
               <motion.h1
@@ -24,26 +30,26 @@ const Home: React.FC = () => {
                 className="text-6xl font-bold text-accent-50"
               >
                 Leia livros em{" "}
-                <span className="bg-gradient-to-b from-cyan-300 to-cyan-500 bg-clip-text text-transparent">
+                <span className="bg-gradient-to-b from-cyan-300 to-cyan-500 bg-clip-text text-transparent drop-shadow-[0_0_10px_rgba(0,255,255,0.3)]">
                   domínio público{" "}
                 </span>
                 com a{" "}
-                <span className="bg-gradient-to-b from-accent-500 to-accent-700 bg-clip-text text-transparent">
+                <span className="bg-gradient-to-b from-accent-500 to-accent-700 bg-clip-text text-transparent drop-shadow-[0_0_10px_rgba(234,73,93,0.3)]">
                   Biblioteca Pocket
                 </span>
               </motion.h1>
               <div className="mt-4 flex w-full gap-4">
-                <Button>
+                <Button className="transition-colors hover:drop-shadow-[0_0_10px_rgba(234,73,93,0.5)]">
                   <CloudDownload size={32} absoluteStrokeWidth />
-                  <motion.div>Baixar agora</motion.div>
+                  Baixar agora
                 </Button>
                 <Button
                   variant="secondary"
-                  className="flex justify-evenly gap-4"
+                  className="flex justify-evenly gap-4 transition-colors"
                 >
                   <div className="flex items-center gap-2">
                     <GithubIcon size={32} absoluteStrokeWidth />
-                    <motion.div>Ver no Github</motion.div>
+                    Ver no Github
                   </div>
                   <ExternalLink size={24} absoluteStrokeWidth />
                 </Button>
@@ -60,11 +66,16 @@ const Home: React.FC = () => {
               <Player src={heroLottie} loop autoplay />
             </motion.div>
           </div>
-          <div className="absolute bottom-10 w-full max-w-[90%] border-b-8 border-dashed border-zinc-600"></div>
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1.5, duration: 0.5 }}
+            className="absolute bottom-10 w-full max-w-[90%] border-b-8 border-dashed border-zinc-600"
+          />
         </div>
       </section>
-      <section id="features"></section>
-      <section id="download"></section>
+      <section id="features" className="h-screen w-full"></section>
+      <section id="download" className="h-screen w-full"></section>
     </main>
   )
 }
