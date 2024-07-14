@@ -5,6 +5,7 @@ import { motion } from "framer-motion"
 import { CloudDownload, ExternalLink, GithubIcon } from "lucide-react"
 
 import Button from "@/components/button"
+import Footer from "@/components/footer"
 import Header from "@/components/header"
 
 import heroLottie from "@/assets/lotties/hero.json"
@@ -76,6 +77,7 @@ const Home: React.FC = () => {
       </section>
       <section id="features" className="h-screen w-full"></section>
       <section id="download" className="h-screen w-full"></section>
+      <Footer />
     </main>
   )
 }
