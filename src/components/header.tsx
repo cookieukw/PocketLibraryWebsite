@@ -29,27 +29,30 @@ function Header({ className, ...rest }: React.HTMLAttributes<HTMLElement>) {
           onClick={() => navigate("/")}
         />
         <ul className="flex cursor-pointer gap-4">
-          <motion.li
+          <motion.a
+            href="#home"
             initial={{ scale: 0 }}
             animate={{ scale: 1, transition: { delay: 0.5 } }}
             className="text-xl text-zinc-50 transition-colors hover:text-accent-500"
           >
             Início
-          </motion.li>
-          <motion.li
+          </motion.a>
+          <motion.a
+            href="#features"
             initial={{ scale: 0 }}
             animate={{ scale: 1, transition: { delay: 0.6 } }}
             className="text-xl text-zinc-50 transition-colors hover:text-accent-500"
           >
             Funcionalidades
-          </motion.li>
-          <motion.li
+          </motion.a>
+          <motion.a
+            href="#download"
             initial={{ scale: 0 }}
             animate={{ scale: 1, transition: { delay: 0.7 } }}
             className="text-xl text-zinc-50 transition-colors hover:text-accent-500"
           >
             Download
-          </motion.li>
+          </motion.a>
         </ul>
       </nav>
     </header>

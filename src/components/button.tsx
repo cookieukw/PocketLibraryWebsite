@@ -12,6 +12,7 @@ export default function Button({
   children,
   variant = "primary" || "secondary",
   className,
+  disabled,
   ...rest
 }: ButtonProps) {
   return (
@@ -23,17 +24,21 @@ export default function Button({
         transition: { delay: 1.5, duration: 0.5, ease: "easeInOut" }
       }}
       whileTap={{
-        scale: 0.95
+        scale: disabled ? 1 : 0.95
       }}
       whileHover={{
-        scale: 1.05
+        scale: disabled ? 1 : 1.05
       }}
       className={clsx(
-        "flex items-center justify-center gap-2 rounded-lg px-6 py-2 text-lg text-accent-50",
+        "flex items-center justify-center gap-2 rounded-lg px-6 py-2 text-lg text-accent-50 transition-colors",
         {
           "bg-accent-500 hover:bg-accent-600": variant === "primary",
           "border border-zinc-700 bg-zinc-800 hover:bg-zinc-900":
-            variant === "secondary"
+            variant === "secondary",
+          "cursor-not-allowed italic": disabled,
+          "bg-accent-900 text-accent-100 hover:bg-accent-900":
+            disabled && variant === "primary",
+          "bg-zinc-900 text-zinc-500": disabled && variant === "secondary"
         },
         className
       )}

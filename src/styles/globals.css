@@ -7,6 +7,7 @@
 @layer base {
   html {
     font-family: "Inter";
+    scroll-behavior: smooth;
   }
 }
 
@@ -16,10 +17,59 @@
     background-position: -10px 0px;
     background-image: linear-gradient(
         to right,
-        theme("colors.zinc.800") 1px,
+        theme("colors.zinc.600") 1px,
         transparent 1px
       ),
-      linear-gradient(to bottom, theme("colors.zinc.800") 1px, transparent 1px);
+      linear-gradient(to bottom, theme("colors.zinc.600") 1px, transparent 1px);
+    mask-image: radial-gradient(circle, black, transparent 65%);
+    /* mask-image: linear-gradient(transparent 65%, black); */
+  }
+
+  .dotted-grid {
+    background-size: 40px 40px;
+    background-image: radial-gradient(
+      circle,
+      theme("colors.zinc.800") 3px,
+      rgba(0, 0, 0, 0) 1px
+    );
     mask-image: linear-gradient(transparent, black);
+  }
+
+  .logo-outline {
+    filter: drop-shadow(-3px 0 0px theme("colors.zinc.100"))
+      drop-shadow(3px 0px 0px theme("colors.zinc.100"))
+      drop-shadow(0 -3px 0px theme("colors.zinc.100"))
+      drop-shadow(-0 3px 0px theme("colors.zinc.100"));
+  }
+
+  .mesh-gradient {
+    background:
+      radial-gradient(at 18% 99%, transparent 0px, transparent 50%) repeat
+        scroll 0% 0%,
+      radial-gradient(at 97% 8%, transparent 0px, transparent 50%) repeat scroll
+        0% 0%,
+      radial-gradient(
+          at 79% 62%,
+          theme("colors.green.300") 0px,
+          transparent 40%
+        )
+        repeat scroll 0% 0%,
+      radial-gradient(at 96% 10%, transparent 0px, transparent 50%) repeat
+        scroll 0% 0%,
+      radial-gradient(at 42% 20%, transparent 0px, transparent 50%) repeat
+        scroll 0% 0%,
+      radial-gradient(
+          at 4% 49%,
+          theme("colors.purple.600") 0px,
+          transparent 50%
+        )
+        repeat scroll 0% 0%,
+      rgba(0, 0, 0, 0)
+        radial-gradient(
+          at 57% 33%,
+          theme("colors.pink.500") 0px,
+          transparent 50%
+        )
+        repeat scroll 0% 0%;
   }
 }
