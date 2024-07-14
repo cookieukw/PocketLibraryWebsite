@@ -1,0 +1,7 @@
+vscode/
+dist/
+package.json
+package-lock.json
+.github
+LICENSE
+src/assets/lotties/*.json

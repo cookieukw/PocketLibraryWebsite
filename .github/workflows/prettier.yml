@@ -1,0 +1,21 @@
+name: ✨ Lint Check
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  prettier:
+    name: ✅ Checkout
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: 📩 Installing dependencies
+        run: npm ci
+
+      - name: ✨ Checking
+        uses: creyD/prettier_action@v4.3
+        with:
+          prettier_options: --check .
