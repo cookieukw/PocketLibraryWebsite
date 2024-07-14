@@ -17,7 +17,7 @@ const Home: React.FC = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 2 }}
-          className="square-grid animate-squareGridMove absolute inset-0"
+          className="square-grid absolute inset-0 animate-squareGridMove"
         />
         <Header className="absolute z-10" />
         <div className="relative flex h-screen w-full justify-center gap-5">
