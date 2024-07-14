@@ -125,7 +125,7 @@ const Home: React.FC = () => {
 
             <div className="flex h-full w-full max-w-2xl items-center justify-center">
               <img
-                className="animate-flying logo-outline"
+                className="logo-outline animate-flying"
                 src={logo}
                 alt="Logo"
               />
