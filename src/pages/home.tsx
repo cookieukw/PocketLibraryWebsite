@@ -8,7 +8,6 @@ import Button from "@/components/button"
 import Footer from "@/components/footer"
 import Header from "@/components/header"
 
-import logo from "@/assets/logo.png?url"
 import heroLottie from "@/assets/lotties/hero.json"
 
 const Home: React.FC = () => {
@@ -22,15 +21,15 @@ const Home: React.FC = () => {
           transition={{ duration: 2 }}
           className="square-grid absolute inset-0 animate-squareGridMove"
         />
-        <Header className="absolute z-10" />
-        <div className="relative flex h-screen w-full justify-center gap-5">
+        <Header className="absolute z-10 hidden sm:flex" />
+        <div className="relative flex h-screen w-full flex-nowrap justify-center gap-5 px-6">
           <div className="h-screen w-full max-w-2xl">
-            <div className="flex h-screen w-full flex-col items-center justify-center px-6">
+            <div className="flex h-screen w-full flex-col items-center justify-center">
               <motion.h1
                 initial={{ opacity: 0, y: 100 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 1, type: "spring" }}
-                className="text-6xl font-bold text-accent-50"
+                className="text-center text-4xl font-bold text-accent-50 sm:text-6xl lg:text-left"
               >
                 Leia livros em{" "}
                 <span className="bg-gradient-to-b from-cyan-300 to-cyan-500 bg-clip-text text-transparent drop-shadow-[0_0_10px_rgba(0,255,255,0.3)]">
@@ -41,7 +40,7 @@ const Home: React.FC = () => {
                   Biblioteca Pocket
                 </span>
               </motion.h1>
-              <div className="mt-4 flex w-full gap-4">
+              <div className="mt-4 flex w-full flex-col justify-center gap-4 sm:flex-row lg:justify-start">
                 <Button className="hover:drop-shadow-[0_0_10px_rgba(234,73,93,0.5)]">
                   <CloudDownload size={32} absoluteStrokeWidth />
                   Baixar agora
@@ -51,7 +50,7 @@ const Home: React.FC = () => {
                     window.open("https://github.com/cookieukw/PocketLibrary")
                   }
                   variant="secondary"
-                  className="flex justify-evenly gap-4"
+                  className="flex gap-4"
                 >
                   <div className="flex items-center gap-2">
                     <GithubIcon size={32} absoluteStrokeWidth />
@@ -62,12 +61,12 @@ const Home: React.FC = () => {
               </div>
             </div>
           </div>
-          <div className="flex items-center justify-center">
+          <div className="hidden items-center justify-center lg:flex">
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 1.2, duration: 0.5 }}
-              className="flex h-screen w-full max-w-2xl items-center justify-center"
+              className="flex h-screen w-full min-w-[450px] max-w-lg items-center justify-center"
             >
               <Player src={heroLottie} loop autoplay />
             </motion.div>
@@ -84,12 +83,12 @@ const Home: React.FC = () => {
       <section id="download" className="relative h-screen w-full">
         <div className="dotted-grid absolute inset-0" />
         <div className="flex h-screen w-full flex-col items-center justify-center">
-          <h2 className="text-center text-4xl font-bold text-zinc-50">
+          <h2 className="mb-6 text-center text-4xl font-bold text-zinc-50 md:text-5xl">
             Vamos começar?
           </h2>
-          <div className="relative flex w-full justify-center gap-5">
-            <div className="flex h-full w-full max-w-2xl flex-col items-center justify-center px-6">
-              <h2 className="max-w-xl text-center text-4xl font-bold text-zinc-50">
+          <div className="relative flex w-full justify-around gap-6 px-6">
+            <div className="flex h-full w-full max-w-2xl flex-col items-center justify-center">
+              <h3 className="max-w-xl text-center text-3xl font-bold text-zinc-50 md:text-4xl">
                 Baixe a{" "}
                 <span className="bg-gradient-to-b from-accent-500 to-accent-700 bg-clip-text text-transparent drop-shadow-[0_0_10px_rgba(234,73,93,0.3)]">
                   Biblioteca Pocket
@@ -97,8 +96,8 @@ const Home: React.FC = () => {
                 <span className="bg-gradient-to-b from-green-300 to-green-500 bg-clip-text text-transparent drop-shadow-[0_0_10px_rgba(0,255,0,0.5)]">
                   gratuitamente
                 </span>
-              </h2>
-              <div className="mt-4 flex w-full flex-col gap-4">
+              </h3>
+              <div className="mt-5 flex w-full flex-col gap-4">
                 <Button
                   variant="primary"
                   className="flex justify-evenly gap-4"
@@ -121,14 +120,6 @@ const Home: React.FC = () => {
                   </div>
                 </Button>
               </div>
-            </div>
-
-            <div className="flex h-full w-full max-w-2xl items-center justify-center">
-              <img
-                className="logo-outline animate-flying"
-                src={logo}
-                alt="Logo"
-              />
             </div>
           </div>
         </div>
