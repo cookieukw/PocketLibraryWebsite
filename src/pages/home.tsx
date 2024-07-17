@@ -7,13 +7,15 @@ import { CloudDownload, ExternalLink, GithubIcon, Play } from "lucide-react"
 import Button from "@/components/button"
 import Footer from "@/components/footer"
 import Header from "@/components/header"
+import { MobileDrawer } from "@/components/mobileDrawer"
 
 import heroLottie from "@/assets/lotties/hero.json"
 
 const Home: React.FC = () => {
   return (
     <main className="overflow-x-hidden bg-zinc-900">
-      <section id="#home" className="h-screen w-full border-b border-zync-950">
+      <MobileDrawer />
+      <section id="home" className="h-screen w-full border-b border-zync-950">
         <div className="mesh-gradient absolute inset-0 opacity-30" />
         <motion.div
           initial={{ opacity: 0 }}
@@ -21,7 +23,7 @@ const Home: React.FC = () => {
           transition={{ duration: 2 }}
           className="square-grid absolute inset-0 animate-squareGridMove"
         />
-        <Header className="absolute z-10 hidden sm:flex" />
+        <Header className="absolute z-[1]" />
         <div className="relative flex h-screen w-full flex-nowrap justify-center gap-5 px-6">
           <div className="h-screen w-full max-w-2xl">
             <div className="flex h-screen w-full flex-col items-center justify-center">
