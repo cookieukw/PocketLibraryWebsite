@@ -30,7 +30,7 @@ export default function Button({
         scale: disabled ? 1 : 1.05
       }}
       className={clsx(
-        "flex items-center justify-center gap-2 rounded-lg px-6 py-2 text-lg text-accent-50 transition-colors",
+        "flex items-center justify-center gap-2 rounded-lg px-4 py-2 text-lg text-accent-50 transition-colors",
         {
           "bg-accent-500 hover:bg-accent-600": variant === "primary",
           "border border-zinc-700 bg-zinc-800 hover:bg-zinc-900":

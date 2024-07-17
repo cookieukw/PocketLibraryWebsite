@@ -2,7 +2,13 @@ import React from "react"
 
 import { Player } from "@lottiefiles/react-lottie-player"
 import { motion } from "framer-motion"
-import { CloudDownload, ExternalLink, GithubIcon, Play } from "lucide-react"
+import {
+  CloudDownload,
+  ExternalLink,
+  GithubIcon,
+  Globe,
+  Play
+} from "lucide-react"
 
 import Button from "@/components/button"
 import Footer from "@/components/footer"
@@ -25,7 +31,7 @@ const Home: React.FC = () => {
         <Header className="absolute z-[1]" />
         <div className="relative flex h-screen w-full flex-nowrap justify-center gap-5 px-6">
           <div className="h-screen w-full max-w-2xl">
-            <div className="flex h-screen w-full flex-col items-center justify-center">
+            <div className="flex h-screen w-full flex-col items-center justify-center lg:items-start">
               <motion.h1
                 initial={{ opacity: 0, y: 100 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -41,7 +47,48 @@ const Home: React.FC = () => {
                   Biblioteca Pocket
                 </span>
               </motion.h1>
-              <div className="mt-4 flex w-full flex-col justify-center gap-4 sm:flex-row lg:justify-start">
+
+              <div className="mt-4 grid grid-cols-1 grid-rows-3 gap-4 sm:grid-cols-2 sm:grid-rows-2">
+                <Button
+                  onClick={() => {
+                    document.getElementById("download")?.scrollIntoView({
+                      behavior: "smooth"
+                    })
+                  }}
+                  className="hover:drop-shadow-[0_0_10px_rgba(234,73,93,0.5)]"
+                >
+                  <CloudDownload size={32} absoluteStrokeWidth />
+                  Baixar agora
+                </Button>
+                <Button
+                  onClick={() =>
+                    window.open("https://github.com/cookieukw/PocketLibrary")
+                  }
+                  variant="secondary"
+                  className="flex gap-4"
+                >
+                  <div className="flex items-center gap-2">
+                    <GithubIcon size={32} absoluteStrokeWidth />
+                    Ver no Github
+                  </div>
+                  <ExternalLink size={24} absoluteStrokeWidth />
+                </Button>
+                <Button
+                  onClick={() =>
+                    (window.location.href = "https://b-pocket.vercel.app/")
+                  }
+                  variant="secondary"
+                  className="flex gap-4 sm:col-span-2"
+                >
+                  <div className="flex items-center gap-2">
+                    <Globe size={32} absoluteStrokeWidth />
+                    Abrir versão web
+                  </div>
+                  <ExternalLink size={24} absoluteStrokeWidth />
+                </Button>
+              </div>
+
+              {/* <div className="mt-4 flex w-full flex-col justify-center gap-4 sm:flex-row lg:justify-start">
                 <Button className="hover:drop-shadow-[0_0_10px_rgba(234,73,93,0.5)]">
                   <CloudDownload size={32} absoluteStrokeWidth />
                   Baixar agora
@@ -59,7 +106,7 @@ const Home: React.FC = () => {
                   </div>
                   <ExternalLink size={24} absoluteStrokeWidth />
                 </Button>
-              </div>
+              </div> */}
             </div>
           </div>
           <div className="hidden items-center justify-center lg:flex">
