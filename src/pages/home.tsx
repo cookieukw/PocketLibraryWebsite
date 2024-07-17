@@ -16,7 +16,6 @@ const Home: React.FC = () => {
     <main className="overflow-x-hidden bg-zinc-900">
       <MobileDrawer />
       <section id="home" className="h-screen w-full border-b border-zync-950">
-        <div className="mesh-gradient absolute inset-0 opacity-30" />
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
