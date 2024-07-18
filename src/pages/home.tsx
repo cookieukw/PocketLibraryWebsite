@@ -87,26 +87,6 @@ const Home: React.FC = () => {
                   <ExternalLink size={24} absoluteStrokeWidth />
                 </Button>
               </div>
-
-              {/* <div className="mt-4 flex w-full flex-col justify-center gap-4 sm:flex-row lg:justify-start">
-                <Button className="hover:drop-shadow-[0_0_10px_rgba(234,73,93,0.5)]">
-                  <CloudDownload size={32} absoluteStrokeWidth />
-                  Baixar agora
-                </Button>
-                <Button
-                  onClick={() =>
-                    window.open("https://github.com/cookieukw/PocketLibrary")
-                  }
-                  variant="secondary"
-                  className="flex gap-4"
-                >
-                  <div className="flex items-center gap-2">
-                    <GithubIcon size={32} absoluteStrokeWidth />
-                    Ver no Github
-                  </div>
-                  <ExternalLink size={24} absoluteStrokeWidth />
-                </Button>
-              </div> */}
             </div>
           </div>
           <div className="hidden items-center justify-center lg:flex">
@@ -127,7 +107,10 @@ const Home: React.FC = () => {
           />
         </div>
       </section>
-      <section id="features" className="h-screen w-full"></section>
+      <section
+        id="features"
+        className="flex w-full justify-center overflow-auto text-zinc-50"
+      ></section>
       <section id="download" className="relative h-screen w-full">
         <div className="dotted-grid absolute inset-0" />
         <div className="flex h-screen w-full flex-col items-center justify-center">
