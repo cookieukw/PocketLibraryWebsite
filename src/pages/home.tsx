@@ -1,8 +1,14 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
 
 import { Player } from "@lottiefiles/react-lottie-player"
-import { motion } from "framer-motion"
 import {
+  AnimatePresence,
+  motion,
+  useMotionValueEvent,
+  useScroll
+} from "framer-motion"
+import {
+  ArrowUp,
   CloudDownload,
   ExternalLink,
   GithubIcon,
@@ -16,11 +22,32 @@ import Header from "@/components/header"
 import { MobileDrawer } from "@/components/mobileDrawer"
 
 import heroLottie from "@/assets/lotties/hero.json"
+import { colors } from "@/styles/colors"
 
 const Home: React.FC = () => {
+  const { scrollYProgress } = useScroll()
+  const [isPageScrolled, setIsPageScrolled] = useState(false)
+
+  useMotionValueEvent(scrollYProgress, "change", (value) => {
+    setIsPageScrolled(value > 0.2)
+  })
+
   return (
     <main className="overflow-x-hidden bg-zinc-900">
       <MobileDrawer />
+      <AnimatePresence>
+        {isPageScrolled && (
+          <motion.div
+            initial={{ y: "100%" }}
+            animate={{ y: 0, transition: { ease: "easeOut" } }}
+            exit={{ y: "150%" }}
+            className="fixed bottom-2 right-2 z-10 rounded-md bg-zync-800 p-2 opacity-80 transition-colors hover:bg-zync-700"
+            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+          >
+            <ArrowUp size={32} color={colors.zync[50]} />
+          </motion.div>
+        )}
+      </AnimatePresence>
       <section id="home" className="h-screen w-full border-b border-zync-950">
         <motion.div
           initial={{ opacity: 0 }}
@@ -107,10 +134,7 @@ const Home: React.FC = () => {
           />
         </div>
       </section>
-      <section
-        id="features"
-        className="flex w-full justify-center overflow-auto text-zinc-50"
-      ></section>
+      <section id="features" className="h-screen w-full"></section>
       <section id="download" className="relative h-screen w-full">
         <div className="dotted-grid absolute inset-0" />
         <div className="flex h-screen w-full flex-col items-center justify-center">
