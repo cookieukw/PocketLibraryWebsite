@@ -20,7 +20,7 @@ export type headerNavItemsType = {
 
 export const headerNavItems: headerNavItemsType[] = [
   { id: 1, name: "Início", tagId: "home", delay: 0.3, icon: Home },
-  { id: 2, name: "Funcionalidades", tagId: "features", delay: 0.4, icon: Star },
+  { id: 2, name: "Imagens", tagId: "images", delay: 0.4, icon: Star },
   {
     id: 3,
     name: "Download",

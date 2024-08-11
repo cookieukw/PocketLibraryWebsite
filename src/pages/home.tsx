@@ -13,7 +13,8 @@ import {
   ExternalLink,
   GithubIcon,
   Globe,
-  Play
+  Play,
+  X
 } from "lucide-react"
 
 import Button from "@/components/button"
@@ -21,12 +22,29 @@ import Footer from "@/components/footer"
 import Header from "@/components/header"
 import { MobileDrawer } from "@/components/mobileDrawer"
 
+import image1 from "@/assets/image_01.png?url"
+import image2 from "@/assets/image_02.png?url"
+import image3 from "@/assets/image_03.png?url"
+import image4 from "@/assets/image_04.png?url"
+import image5 from "@/assets/image_05.png?url"
 import heroLottie from "@/assets/lotties/hero.json"
 import { colors } from "@/styles/colors"
+
+const images: { id: number; path: string }[] = [
+  { id: 1, path: image1 },
+  { id: 2, path: image2 },
+  { id: 3, path: image3 },
+  { id: 4, path: image4 },
+  { id: 5, path: image5 }
+]
 
 const Home: React.FC = () => {
   const { scrollYProgress } = useScroll()
   const [isPageScrolled, setIsPageScrolled] = useState(false)
+  const [selectedImage, setSelectedImage] = useState<{
+    id: string
+    path: string
+  } | null>(null)
 
   useMotionValueEvent(scrollYProgress, "change", (value) => {
     setIsPageScrolled(value > 0.2)
@@ -35,6 +53,32 @@ const Home: React.FC = () => {
   return (
     <main className="overflow-x-hidden bg-zinc-900">
       <MobileDrawer />
+      <AnimatePresence>
+        {selectedImage && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1, transition: { duration: 0.5 } }}
+            exit={{ opacity: 0 }}
+            layoutId={selectedImage.id}
+            className="absolute inset-0 z-50 flex h-full w-full items-center justify-center backdrop-brightness-[0.2]"
+            style={{ top: window.scrollY + "px" }}
+          >
+            <img src={selectedImage.path} className="h-screen" />
+            <motion.button
+              onClick={() => {
+                setSelectedImage(null)
+                document.body.style.overflow = "auto"
+              }}
+            >
+              <X
+                size={32}
+                color={colors.zync[50]}
+                className="absolute right-2 top-2"
+              />
+            </motion.button>
+          </motion.div>
+        )}
+      </AnimatePresence>
       <AnimatePresence>
         {isPageScrolled && (
           <motion.div
@@ -48,6 +92,7 @@ const Home: React.FC = () => {
           </motion.div>
         )}
       </AnimatePresence>
+
       <section id="home" className="h-screen w-full border-b border-zync-950">
         <motion.div
           initial={{ opacity: 0 }}
@@ -134,11 +179,58 @@ const Home: React.FC = () => {
           />
         </div>
       </section>
-      <section id="features" className="h-screen w-full"></section>
+      <section
+        id="images"
+        className="flex w-full flex-col items-center border-b border-zinc-700"
+      >
+        <motion.h2
+          initial={{ opacity: 0, scale: 0.8 }}
+          whileInView={{
+            opacity: 1,
+            scale: 1,
+            transition: {
+              duration: 0.5,
+              stiffness: 100,
+              type: "spring"
+            }
+          }}
+          className="mb-6 mt-4 text-3xl font-bold text-zinc-50"
+        >
+          Imagens
+        </motion.h2>
+        <div className="flex w-full max-w-5xl flex-wrap justify-center gap-4 p-4">
+          {images.map((item) => (
+            <motion.img
+              initial={{ opacity: 0, scale: 0.8 }}
+              whileInView={{
+                opacity: 1,
+                scale: 1,
+                transition: {
+                  duration: 0.2,
+                  delay: 0.2,
+                  stiffness: 100,
+                  type: "spring"
+                }
+              }}
+              key={item.id}
+              src={item.path}
+              layoutId={item.id.toString()}
+              className="w-[300px] rounded-xl drop-shadow-xl"
+              onClick={() => {
+                setSelectedImage({
+                  id: item.id.toString(),
+                  path: item.path
+                })
+                document.body.style.overflow = "hidden"
+              }}
+            />
+          ))}
+        </div>
+      </section>
       <section id="download" className="relative h-screen w-full">
         <div className="dotted-grid absolute inset-0" />
         <div className="flex h-screen w-full flex-col items-center justify-center">
-          <h2 className="mb-6 text-center text-4xl font-bold text-zinc-50 md:text-5xl">
+          <h2 className="z-10 mb-6 text-center text-4xl font-bold text-zinc-50 md:text-5xl">
             Vamos começar?
           </h2>
           <div className="relative flex w-full justify-around gap-6 px-6">
