@@ -36,7 +36,7 @@ export default function Button({
           "border border-zinc-700 bg-zinc-800 hover:bg-zinc-900":
             variant === "secondary",
           "cursor-not-allowed italic": disabled,
-          "bg-accent-900 text-accent-100 hover:bg-accent-900":
+          "bg-accent-900 text-accent-300 hover:bg-accent-900":
             disabled && variant === "primary",
           "bg-zinc-900 text-zinc-500": disabled && variant === "secondary"
         },
