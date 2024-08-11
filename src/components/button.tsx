@@ -43,6 +43,7 @@ export default function Button({
         className
       )}
       {...rest}
+      onClick={disabled ? () => {} : rest.onClick}
     >
       {children}
     </motion.button>

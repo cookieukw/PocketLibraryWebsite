@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 
 import { Player } from "@lottiefiles/react-lottie-player"
 import {
@@ -20,6 +20,7 @@ import {
 import Button from "@/components/button"
 import Footer from "@/components/footer"
 import Header from "@/components/header"
+import Loading from "@/components/loading"
 import { MobileDrawer } from "@/components/mobileDrawer"
 
 import image1 from "@/assets/image_01.png?url"
@@ -38,6 +39,48 @@ const images: { id: number; path: string }[] = [
   { id: 5, path: image5 }
 ]
 
+export interface IGitHubReleaseData {
+  url: string
+  assets_url: string
+  upload_url: string
+  html_url: string
+  id: number
+  author: IAuthor
+  node_id: string
+  tag_name: string
+  target_commitish: string
+  name: string
+  draft: boolean
+  prerelease: boolean
+  created_at: string
+  published_at: string
+  assets: any[]
+  tarball_url: string
+  zipball_url: string
+  body: string
+}
+
+export interface IAuthor {
+  login: string
+  id: number
+  node_id: string
+  avatar_url: string
+  gravatar_id: string
+  url: string
+  html_url: string
+  followers_url: string
+  following_url: string
+  gists_url: string
+  starred_url: string
+  subscriptions_url: string
+  organizations_url: string
+  repos_url: string
+  events_url: string
+  received_events_url: string
+  type: string
+  site_admin: boolean
+}
+
 const Home: React.FC = () => {
   const { scrollYProgress } = useScroll()
   const [isPageScrolled, setIsPageScrolled] = useState(false)
@@ -45,10 +88,31 @@ const Home: React.FC = () => {
     id: string
     path: string
   } | null>(null)
+  const [gitHubReleaseData, setGitHubReleaseData] =
+    useState<IGitHubReleaseData | null>(null)
+  const [requestFalied, setRequestFailed] = useState(false)
 
   useMotionValueEvent(scrollYProgress, "change", (value) => {
     setIsPageScrolled(value > 0.2)
   })
+
+  useEffect(() => {
+    const fetchGitHubReleaseData = async () => {
+      const response = await fetch(
+        "https://api.github.com/repos/cookieukw/PocketLibrary/releases/latest"
+      )
+
+      if (!response.ok) {
+        setRequestFailed(true)
+        return
+      }
+
+      const data = (await response.json()) as IGitHubReleaseData
+      setGitHubReleaseData(data)
+    }
+
+    fetchGitHubReleaseData()
+  }, [])
 
   return (
     <main className="overflow-x-hidden bg-zinc-900">
@@ -252,18 +316,30 @@ const Home: React.FC = () => {
                 >
                   <div className="flex items-center gap-2">
                     <Play size={32} absoluteStrokeWidth />
-                    Baixar via Play Store (em breve)
+                    Play Store (em breve)
                     <ExternalLink size={24} absoluteStrokeWidth />
                   </div>
                 </Button>
                 <Button
                   variant="secondary"
                   className="flex justify-evenly gap-4"
+                  onClick={() => window.open(gitHubReleaseData!.html_url)}
+                  disabled={requestFalied || gitHubReleaseData === null}
                 >
                   <div className="flex items-center gap-2">
-                    <GithubIcon size={32} absoluteStrokeWidth />
-                    Baixar via GitHub Releases (APK)
-                    <ExternalLink size={24} absoluteStrokeWidth />
+                    {!requestFalied && gitHubReleaseData === null ? (
+                      <Loading />
+                    ) : (
+                      <>
+                        <GithubIcon size={32} absoluteStrokeWidth />
+                        GitHub Releases (
+                        {!requestFalied
+                          ? gitHubReleaseData!.name
+                          : "Indisponível"}
+                        )
+                        <ExternalLink size={24} absoluteStrokeWidth />
+                      </>
+                    )}
                   </div>
                 </Button>
               </div>
