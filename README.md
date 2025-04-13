@@ -3,7 +3,7 @@
 
   <h1>PocketLibrary Website</h1>
 
-  <p>See the PocketLibrary repository <a href="https://github.com/cookieukw/PocketLibrary">here</a></p>
+  <p>See the PocketLibrary repository <a href="https://github.com/cookieukw/PocketLibraryAPI">here</a></p>
 </div>
 
 ## Running
